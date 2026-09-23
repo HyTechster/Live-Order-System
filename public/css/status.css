@@ -1,0 +1,202 @@
+/* Customer status page. Mobile first, one-hand friendly. */
+
+
+.status-page {
+  transition: background-color 400ms var(--ease), color 400ms var(--ease);
+}
+
+.status-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  color: var(--accent);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.ticket {
+  margin-top: var(--s-5);
+  text-align: center;
+}
+
+.ticket-label {
+  color: var(--text-2);
+  font-weight: 600;
+}
+
+.ticket-num {
+  font-size: clamp(5rem, 28vw, 8rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  min-height: 1em;
+}
+
+.skeleton-num {
+  display: inline-block;
+  width: 4ch;
+  height: 0.8em;
+}
+
+.ticket h1 {
+  margin-top: var(--s-4);
+  font-size: var(--fs-2xl);
+  font-weight: 750;
+  letter-spacing: -0.01em;
+}
+
+.ticket-sub {
+  margin-top: var(--s-1);
+  color: var(--text-2);
+}
+
+.steps {
+  --st: var(--received-strong);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-2);
+  margin-top: var(--s-6);
+}
+
+[data-status="preparing"] .steps { --st: var(--preparing-strong); }
+[data-status="ready"] .steps,
+[data-status="collected"] .steps { --st: var(--ready-strong); }
+
+.steps li {
+  display: grid;
+  gap: var(--s-2);
+  text-align: center;
+}
+
+.step-bar {
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--border);
+  transition: background-color 400ms var(--ease);
+}
+
+.step-label {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+
+.steps [data-state="done"] .step-bar,
+.steps [data-state="current"] .step-bar {
+  background: var(--st);
+}
+
+.steps [data-state="current"] .step-label {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.receipt {
+  margin-top: var(--s-6);
+  padding: var(--s-4);
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--r-surface);
+}
+
+.receipt-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--s-3);
+}
+
+.receipt-head h2 {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+}
+
+.receipt-meta {
+  color: var(--text-2);
+  font-weight: 600;
+}
+
+.receipt-items {
+  display: grid;
+  gap: var(--s-2);
+}
+
+.receipt-items li {
+  display: grid;
+  grid-template-columns: 3ch 1fr auto;
+  gap: var(--s-2);
+}
+
+.receipt-items .qty,
+.receipt-items .price {
+  color: var(--text-2);
+}
+
+.receipt-note {
+  margin-top: var(--s-3);
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-control);
+  background: var(--accent-soft);
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+.receipt-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--border);
+  font-weight: 700;
+}
+
+/* Ready: the whole page turns green so it is obvious from arm's length */
+.status-page[data-status="ready"] {
+  background: var(--ready-strong);
+  color: var(--ready-on);
+}
+
+.status-page[data-status="ready"] .ticket-label,
+.status-page[data-status="ready"] .ticket-sub,
+.status-page[data-status="ready"] .step-label,
+.status-page[data-status="ready"] .steps [data-state="current"] .step-label,
+.status-page[data-status="ready"] .back,
+.status-page[data-status="ready"] .status-top .live {
+  color: var(--ready-on);
+}
+
+.status-page[data-status="ready"] .steps { --st: var(--ready-on); }
+.status-page[data-status="ready"] .step-bar { background: color-mix(in srgb, var(--ready-on) 30%, transparent); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .status-page[data-status="ready"] .ticket-num {
+    animation: pop 600ms var(--ease);
+  }
+}
+
+@keyframes pop {
+  from { transform: scale(0.92); opacity: 0.6; }
+}
+
+.missing {
+  margin-top: var(--s-7);
+  display: grid;
+  justify-items: start;
+  gap: var(--s-3);
+}
+
+.missing h1 {
+  line-height: 1.2;
+  font-size: var(--fs-2xl);
+  font-weight: 750;
+}
+
+.missing p {
+  color: var(--text-2);
+}

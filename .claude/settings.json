@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(npm run dev)",
+      "Bash(npm start)",
+      "Bash(node --check:*)",
+      "Bash(curl:*)",
+      "PowerShell(npm install)",
+      "PowerShell(npm run dev)",
+      "PowerShell(npm start)",
+      "WebFetch(domain:raw.githubusercontent.com)"
+    ]
+  }
+}

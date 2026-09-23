@@ -1,0 +1,275 @@
+/* Design tokens + shared styles. See DESIGN.md for the rules behind these. */
+
+:root {
+  color-scheme: light dark;
+
+  /* Neutrals (cool zinc) */
+  --bg: #f4f4f5;
+  --surface: #ffffff;
+  --surface-2: #fafafa;
+  --border: #e4e4e7;
+  --border-strong: #8b8b94;
+  --text: #18181b;
+  --text-2: #52525b;
+  --text-3: #71717a;
+
+  /* One accent */
+  --accent: #2f54d6;
+  --accent-hover: #2745b5;
+  --accent-ink: #ffffff;
+  --accent-soft: #e8edfd;
+
+  /* Status (semantic) */
+  --received-soft: #ececef;
+  --received-ink: #3f3f46;
+  --received-strong: #71717a;
+  --preparing-soft: #fef3c7;
+  --preparing-ink: #92400e;
+  --preparing-strong: #f59e0b;
+  --preparing-on: #1c1400;
+  --ready-soft: #dcfce7;
+  --ready-ink: #166534;
+  --ready-strong: #15803d;
+  --ready-on: #ffffff;
+  --danger: #b42318;
+  --danger-soft: #fdecea;
+
+  /* Type */
+  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.9375rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.375rem;
+  --fs-2xl: 1.75rem;
+  --fs-3xl: 2.5rem;
+
+  /* Space */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+
+  /* Shape lock: controls 12, surfaces 16, badges pill */
+  --r-control: 12px;
+  --r-surface: 16px;
+  --r-pill: 999px;
+
+  --shadow-bar: 0 -8px 24px -12px rgb(24 24 27 / 0.18);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --tap: 44px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f0f11;
+    --surface: #18181b;
+    --surface-2: #1f1f23;
+    --border: #2e2e33;
+    --border-strong: #6b6b75;
+    --text: #f4f4f5;
+    --text-2: #b4b4bc;
+    --text-3: #8b8b94;
+
+    --accent: #7b96ff;
+    --accent-hover: #97acff;
+    --accent-ink: #0b1030;
+    --accent-soft: rgb(123 150 255 / 0.14);
+
+    --received-soft: #26262b;
+    --received-ink: #d4d4d8;
+    --received-strong: #a1a1aa;
+    --preparing-soft: rgb(245 158 11 / 0.16);
+    --preparing-ink: #fcd34d;
+    --preparing-strong: #f59e0b;
+    --ready-soft: rgb(34 197 94 / 0.16);
+    --ready-ink: #86efac;
+    --ready-strong: #22c55e;
+    --ready-on: #052e13;
+    --danger: #ff8a80;
+    --danger-soft: rgb(255 138 128 / 0.12);
+
+    --shadow-bar: 0 -8px 24px -12px rgb(0 0 0 / 0.6);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: var(--fs-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, ul, ol {
+  margin: 0;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+
+button, input, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Component display rules must never beat the hidden attribute. */
+[hidden] {
+  display: none !important;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-height: var(--tap);
+  padding: 0 var(--s-5);
+  border: 1px solid transparent;
+  border-radius: var(--r-control);
+  font-weight: 650;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 150ms var(--ease), transform 150ms var(--ease), opacity 150ms var(--ease);
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--surface-2);
+}
+
+/* Status badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 var(--s-3);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  background: var(--received-soft);
+  color: var(--received-ink);
+}
+
+.badge[data-status="preparing"] { background: var(--preparing-soft); color: var(--preparing-ink); }
+.badge[data-status="ready"] { background: var(--ready-soft); color: var(--ready-ink); }
+
+/* Live connection indicator: the one dot that shows real state */
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+
+.live::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--received-strong);
+}
+
+.live[data-state="online"]::before { background: var(--ready-strong); }
+.live[data-state="offline"]::before { background: var(--preparing-strong); }
+
+/* Customer page column */
+.page {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--s-5) var(--s-4) var(--s-7);
+}
+
+/* Skeleton loading */
+.skeleton {
+  border-radius: var(--r-control);
+  background: var(--received-soft);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton {
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse {
+  50% { opacity: 0.5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kitchen board</title>
+  <meta name="theme-color" content="#f4f4f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f0f11" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/kitchen.css">
+</head>
+<body class="kitchen">
+  <header class="k-top">
+    <div class="k-title">
+      <h1>Kitchen</h1>
+      <span class="k-summary num" id="summary">Loading orders…</span>
+    </div>
+    <div class="k-tools">
+      <span class="live" id="live" data-state="connecting">Connecting…</span>
+      <button type="button" class="btn btn-ghost" id="sound" aria-pressed="false">Sound off</button>
+    </div>
+  </header>
+
+  <p class="k-error" id="error" role="alert" hidden></p>
+
+  <main class="board">
+    <section class="col" data-status="received" aria-labelledby="h-received">
+      <header class="col-head">
+        <h2 id="h-received">Received</h2>
+        <span class="col-count num" data-count>0</span>
+      </header>
+      <ol class="col-list" data-list>
+        <li class="skeleton card-skeleton"></li>
+        <li class="skeleton card-skeleton"></li>
+      </ol>
+    </section>
+
+    <section class="col" data-status="preparing" aria-labelledby="h-preparing">
+      <header class="col-head">
+        <h2 id="h-preparing">Preparing</h2>
+        <span class="col-count num" data-count>0</span>
+      </header>
+      <ol class="col-list" data-list>
+        <li class="skeleton card-skeleton"></li>
+      </ol>
+    </section>
+
+    <section class="col" data-status="ready" aria-labelledby="h-ready">
+      <header class="col-head">
+        <h2 id="h-ready">Ready</h2>
+        <span class="col-count num" data-count>0</span>
+      </header>
+      <ol class="col-list" data-list>
+        <li class="skeleton card-skeleton"></li>
+      </ol>
+    </section>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="/js/kitchen.js"></script>
+</body>
+</html>

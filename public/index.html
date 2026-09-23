@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Order at Mamak Bestari</title>
+  <meta name="theme-color" content="#f4f4f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f0f11" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/order.css">
+</head>
+<body class="customer">
+  <form id="order-form" class="page" novalidate>
+    <header class="shop">
+      <p class="shop-name" translate="no">Mamak Bestari</p>
+      <h1>What would you like?</h1>
+      <p class="lede">Pick your food and drinks. We’ll call your number when it’s ready.</p>
+    </header>
+
+    <div id="menu" aria-busy="true">
+      <div class="menu-group">
+        <div class="skeleton skeleton-title"></div>
+        <div class="skeleton skeleton-list"></div>
+      </div>
+    </div>
+
+    <div id="menu-error" class="notice" role="alert" hidden>
+      <p>We couldn’t load the menu.</p>
+      <button type="button" class="btn btn-ghost" id="menu-retry">Try again</button>
+    </div>
+
+    <section class="details" aria-labelledby="details-title">
+      <h2 id="details-title">Details</h2>
+      <div class="field">
+        <label for="table">Table number</label>
+        <input id="table" name="table" inputmode="numeric" maxlength="10" autocomplete="off" aria-describedby="table-hint">
+        <p class="hint" id="table-hint">Leave empty for takeaway.</p>
+      </div>
+      <div class="field">
+        <label for="note">Note for the kitchen</label>
+        <textarea id="note" name="note" autocomplete="off" rows="2" maxlength="140" aria-describedby="note-hint"></textarea>
+        <p class="hint" id="note-hint">Optional, like “Kurang manis”. <span class="num" id="note-count">0/140</span></p>
+      </div>
+    </section>
+
+    <footer class="cart-bar">
+      <div class="cart-inner">
+        <p class="form-error" id="submit-error" role="alert" hidden></p>
+        <div class="cart-summary" aria-live="polite">
+          <span id="cart-count">No items yet</span>
+          <strong class="num" id="cart-total">RM 0.00</strong>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="place" disabled>Place order</button>
+      </div>
+    </footer>
+  </form>
+
+  <script type="module" src="/js/order.js"></script>
+</body>
+</html>

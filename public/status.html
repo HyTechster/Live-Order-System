@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Your order</title>
+  <meta name="theme-color" content="#f4f4f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f0f11" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/status.css">
+</head>
+<body class="customer status-page" data-status="loading">
+  <div class="page">
+    <header class="status-top">
+      <a class="back" href="/">New order</a>
+      <span class="live" id="live" data-state="connecting">Connecting…</span>
+    </header>
+
+    <main id="view">
+      <section class="ticket" aria-live="polite">
+        <p class="ticket-label">Your number</p>
+        <p class="ticket-num num" id="number"><span class="skeleton skeleton-num"></span></p>
+        <h1 id="headline">Loading your order…</h1>
+        <p class="ticket-sub" id="sub"></p>
+      </section>
+
+      <ol class="steps" id="steps" aria-label="Order progress">
+        <li data-step="received"><span class="step-bar"></span><span class="step-label">Received</span></li>
+        <li data-step="preparing"><span class="step-bar"></span><span class="step-label">Preparing</span></li>
+        <li data-step="ready"><span class="step-bar"></span><span class="step-label">Ready</span></li>
+        <li data-step="collected"><span class="step-bar"></span><span class="step-label">Collected</span></li>
+      </ol>
+
+      <section class="receipt" aria-labelledby="receipt-title" id="receipt" hidden>
+        <div class="receipt-head">
+          <h2 id="receipt-title">Your order</h2>
+          <span class="receipt-meta" id="meta"></span>
+        </div>
+        <ul class="receipt-items" id="items"></ul>
+        <p class="receipt-note" id="note" hidden></p>
+        <div class="receipt-total">
+          <span>Total</span>
+          <strong class="num" id="total"></strong>
+        </div>
+      </section>
+    </main>
+
+    <section class="missing" id="missing" hidden>
+      <h1>We couldn’t find that order</h1>
+      <p>The link may be wrong, or the order has been cleared.</p>
+      <a class="btn btn-primary" href="/">Start a new order</a>
+    </section>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="/js/status.js"></script>
+</body>
+</html>
