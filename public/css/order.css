@@ -10,10 +10,40 @@ html:has(.cart-bar) {
   padding-bottom: calc(170px + env(safe-area-inset-bottom));
 }
 
+.shop-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
 .shop-name {
   font-size: var(--fs-sm);
   font-weight: 700;
   color: var(--accent);
+}
+
+/* Opens the kitchen board in a new tab. Quiet so it never competes with ordering. */
+.view-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  min-height: var(--tap);
+  padding: 0 var(--s-3);
+  margin-right: calc(var(--s-3) * -1);
+  border-radius: var(--r-control);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-2);
+  text-decoration: none;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 150ms var(--ease), color 150ms var(--ease);
+}
+
+.view-switch:hover {
+  background: var(--received-soft);
+  color: var(--text);
 }
 
 .shop h1 {
