@@ -1,5 +1,7 @@
 # Live Order Queue
 
+![Live Order Queue: customer order page on a phone, order status squares, and the live kitchen board](docs/readme-thumbnail.png)
+
 A small real-time ordering system for a mamak or café. Customers order from their phone, the kitchen sees the order instantly, and customers watch their order move from **Received → Preparing → Ready** without refreshing.
 
 Built with **Express.js** and **Socket.io**. No database, no frontend framework, no build step.
